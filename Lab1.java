@@ -4,16 +4,20 @@ public class Lab1 {
     private String sentence;
     private int[] frequencyArray;
     private String[] binaryArray;
+    Scanner sc;
     public Lab1() {        
-       Scanner sc = new Scanner(System.in);
+       sc = new Scanner(System.in);
+       System.out.print("Please enter a sentence: ");
        sentence = sc.nextLine();
        frequencyArray = new int[128];
        binaryArray = new String[sentence.length()];
     }
     public static void main(String args[]) {
         Lab1 myLab = new Lab1();
-        myLab.printFrequencyArray();
+        System.out.println();
         myLab.printBinaryArray();
+        System.out.println("\n");
+        myLab.printFrequencyArray();        
     }
     private void fillFrequencyArray() {
         for(int i = 0; i < sentence.length(); i++) {
@@ -42,15 +46,22 @@ public class Lab1 {
     public void printFrequencyArray() {
         fillFrequencyArray();
         for(int i = 0; i < frequencyArray.length; i++) {
-            if(frequencyArray[i] > 0) {
-                System.out.println((char)i + " appeared " + frequencyArray[i] + " times");
+            if(frequencyArray[i] == 1) {
+                System.out.println("'" + (char)i + "' appeared " + frequencyArray[i] + " time");
+            } else if(frequencyArray[i] > 1) {
+                System.out.println("'" + (char)i + "' appeared " + frequencyArray[i] + " times");
             }
         }
     }
-    public void printBinaryArray() {
+     public void printBinaryArray() {
         fillBinaryArray();
+        int counter = 1;
         for(int i = 0; i < binaryArray.length; i++) {
             System.out.print(binaryArray[i] + " ");
+            if(counter % 8 == 0) {
+                System.out.println();
+            }
+            counter++;
         }
     }
 }
